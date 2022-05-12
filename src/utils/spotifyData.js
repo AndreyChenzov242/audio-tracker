@@ -1,5 +1,8 @@
 const AUTH_TOKEN =
-  "Bearer BQCPfxqdTLF5Sno4nvsyGISLB_VU9YmYJ7ODRhY76qmVHD3ytA_2bMRPyWPhzKGnEytVnd2vMLR1bRiDAmO9KlT_1WDgbCYsX7OA6JuAwmVAt5vCfdTNEgztLcqWeiCG_2HA1qTLfjnabloClaRiCg8ggNolsHlZ9HM6TPs1_G-Zgg";
+  "BQBbGOTQwtvWR66zJx4nKpw53IVMHv0v_qp4wBK4RSscONNVXbxWP2O3jWgAxveKoirWD_-9jE3fFK_AoNm_wCU_RuEDpF50WkGLmMdSyUeLxADdkdlPEr_VFSRIeX4sahDsj7D-9ZM4DfAw8P_nEu2525nqRush1QpSp8SQP0LWYrBG";
+const AUTH = "Bearer " + AUTH_TOKEN;
+const getTrackUrl = "https://api.spotify.com/v1/tracks/?ids=";
+const getPlaylistUrl = "https://api.spotify.com/v1/playlists/";
 
 export const spotifyData = {
   async search(query) {
@@ -8,7 +11,35 @@ export const spotifyData = {
     let response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: AUTH_TOKEN,
+        Authorization: AUTH,
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    return json;
+  },
+
+  async getTrack(id) {
+    const url = getTrackUrl + id;
+
+    let response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: AUTH,
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+    return json;
+  },
+
+  async getPlaylist(id) {
+    const url = getPlaylistUrl + id;
+
+    let response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: AUTH,
         "Content-Type": "application/json",
       },
     });
