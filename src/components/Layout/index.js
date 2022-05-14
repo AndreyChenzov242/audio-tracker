@@ -12,6 +12,8 @@ function Layout() {
 
   const [trackList, setTrackList] = useState();
 
+  const [correntTrack, setCurrentTrack] = useState();
+
   function toggleTextMuted() {
     setTextMuted(!textMuted);
   }
@@ -21,9 +23,11 @@ function Layout() {
       <Header textMuted={textMuted} toggleTextMuted={toggleTextMuted} />
       <div className="content-wrapper">
         <Navbar textMuted={textMuted} />
-        <TrackListContext.Provider value={{ trackList, setTrackList }}>
+        <TrackListContext.Provider
+          value={{ trackList, setTrackList, correntTrack, setCurrentTrack }}
+        >
           <Outlet />
-          <Player textMuted={textMuted} />
+          <Player textMuted={textMuted} correntTrack={correntTrack} />
         </TrackListContext.Provider>
       </div>
     </>

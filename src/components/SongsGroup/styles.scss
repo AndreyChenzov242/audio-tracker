@@ -22,6 +22,35 @@
     position: relative;
   }
 
+  &__image-overlay {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 10;
+    transition: background-color 0.2s ease-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.5);
+
+      button {
+        transform: translateY(0);
+      }
+    }
+
+    button {
+      transition: transform 0.15s ease-out;
+
+      transform: translateY(100px);
+    }
+  }
+
   &__image {
     width: 100%;
     height: 100%;

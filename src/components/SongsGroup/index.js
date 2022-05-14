@@ -1,9 +1,11 @@
 import React from "react";
-import { useSpotifyTrack } from "../../hooks/useSpotifyTrack";
+import ReactIcon from "../ReactIcon";
+import { MdPlayArrow } from "react-icons/md";
+
 import "./styles.scss";
 
 function SongsGroup(props) {
-  const { songs, title } = props;
+  const { songs, title, setCurrentTrack } = props;
 
   return (
     <div className="songs">
@@ -12,6 +14,13 @@ function SongsGroup(props) {
         {songs.map((song, index) => (
           <div className="music-card__item" key={index}>
             <div className="music-card__image-wrapper">
+              <div className="music-card__image-overlay">
+                <button onClick={() => setCurrentTrack(song.preview_url)}>
+                  <ReactIcon size="xxxl">
+                    <MdPlayArrow />
+                  </ReactIcon>
+                </button>
+              </div>
               <img
                 className="music-card__image"
                 src={

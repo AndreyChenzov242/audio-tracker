@@ -9,24 +9,39 @@ const Player = (props) => {
   const { trackList } = useContext(TrackListContext);
   const [playing, setPlaying] = useState(false);
   const [activeTrackIndex, setActiveTrackIndex] = useState(0);
-  const isTextMuted = props.textMuted;
+  const { isTextMuted, correntTrack } = props;
   const textMuted = isTextMuted ? "text-muted" : "";
 
-  const audioRef = useRef(null);
-  const audioSrc = useRef(null);
-
-  const stopPlaying = () => {
-    setPlaying(false);
-  };
+  const audioRef = useRef();
+  const audioSrc = useRef();
 
   useEffect(() => {
-    if (!trackList) return;
-    audioRef.current.addEventListener("ended", stopPlaying);
+    if (correntTrack) {
+      pause();
+      setPlaying(true);
+      audioSrc.current.src = correntTrack;
+      audioRef.current.load();
+      audioRef.current.play();
+      setActiveTrackIndex(
+        trackList.indexOf(
+          trackList.find((track) => track.preview_url == correntTrack)
+        )
+      );
+    }
+  }, [correntTrack]);
 
-    return () => {
-      audioRef.current.removeEventListener("ended", stopPlaying);
-    };
-  }, [audioSrc]);
+  // useEffect(() => {
+  //   const stopPlaying = () => {
+  //     console.log("event stop playing");
+  //     setPlaying(false);
+  //   };
+
+  //   audioRef.current.addEventListener("ended", stopPlaying);
+
+  //   return () => {
+  //     audioRef.current.removeEventListener("ended", stopPlaying);
+  //   };
+  // }, []);
 
   const play = () => {
     audioSrc.current.src = trackList[activeTrackIndex].preview_url;
@@ -72,9 +87,7 @@ const Player = (props) => {
     setActiveTrackIndex(activeTrackIndex - 1);
   };
 
-  if (!trackList) {
-    return;
-  }
+  if (!trackList) return;
 
   return (
     <div className={`player ${textMuted}`}>

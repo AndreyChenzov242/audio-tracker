@@ -9,7 +9,7 @@ function MusicPage() {
   // const { tracks, albums, artists } = useSpotifyData("astral%20step");
   // const { tracks, albums, artists } = useSpotifyData("капли");
   const { tracks, name } = useSpotifyPlaylist("37i9dQZEVXbNcoJZ65xktI");
-  const { setTrackList } = useContext(TrackListContext);
+  const { setTrackList, setCurrentTrack } = useContext(TrackListContext);
   const [simpleTracksData, setSimpleTracksData] = useState();
 
   useEffect(() => {
@@ -23,7 +23,11 @@ function MusicPage() {
     <main className="main-content__wrapper">
       <div className="main-content">
         {simpleTracksData && (
-          <SongsGroup songs={simpleTracksData} title={name} />
+          <SongsGroup
+            songs={simpleTracksData}
+            setCurrentTrack={setCurrentTrack}
+            title={name}
+          />
         )}
       </div>
     </main>

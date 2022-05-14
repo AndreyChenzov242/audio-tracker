@@ -9,6 +9,7 @@
   bottom: 0;
   background-color: $player-secondary;
   margin-left: 250px;
+  z-index: 1000;
 
   &.text-muted {
     margin-left: 70px;
@@ -50,6 +51,9 @@
     max-width: 150px;
     display: flex;
     justify-content: space-between;
+    // margin-left: calc(50% - 427px);
+    // margin-left: calc(50% - 677px);
+    margin-left: 15%;
   }
 
   &__button {
