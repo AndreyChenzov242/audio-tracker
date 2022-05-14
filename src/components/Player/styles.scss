@@ -1,4 +1,62 @@
-.button-player {
-  background-color: rgb(145, 145, 145);
-  border: 1px solid black;
+@import "../../styles/colors.scss";
+
+.player {
+  display: flex;
+  width: 100%;
+  height: 76px;
+  padding: 8px;
+  position: absolute;
+  bottom: 0;
+  background-color: $player-secondary;
+  margin-left: 250px;
+
+  &.text-muted {
+    margin-left: 70px;
+  }
+
+  &__image-wrapper {
+    height: 100%;
+    width: 60px;
+    margin-right: 24px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__title {
+    color: $primary;
+    padding-top: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    max-width: 260px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  &__track-name {
+    font-size: 0.8rem;
+  }
+
+  &__artist {
+    font-size: 0.7rem;
+  }
+
+  &__button-wrapper {
+    width: 100%;
+    max-width: 150px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    padding: 4px;
+
+    &--prev {
+      transform: rotate(180deg);
+    }
+  }
 }

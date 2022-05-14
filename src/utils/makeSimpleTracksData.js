@@ -1,10 +1,8 @@
 export const makeSimpleTracksData = (tracks) => {
-  let simpleTracksData = {
-    items: [],
-  };
+  let simpleTracksData = [];
 
   for (let i = 0; i < tracks.items.length; i++) {
-    simpleTracksData["items"].push({
+    simpleTracksData.push({
       name: tracks.items[i].track.name,
       album: {
         images: tracks.items[i].track.album.images,

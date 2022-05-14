@@ -1,5 +1,5 @@
 const AUTH_TOKEN =
-  "BQBbGOTQwtvWR66zJx4nKpw53IVMHv0v_qp4wBK4RSscONNVXbxWP2O3jWgAxveKoirWD_-9jE3fFK_AoNm_wCU_RuEDpF50WkGLmMdSyUeLxADdkdlPEr_VFSRIeX4sahDsj7D-9ZM4DfAw8P_nEu2525nqRush1QpSp8SQP0LWYrBG";
+  "BQByew7IcknWlYdce8iiD6UyxJO-k7vT_6pfbJswyBX1R34SIqqHGDot6T9B0VO6OhWeixkX6xm3VOpCK6gsy-D1vMhJEICgcX18sUI1_LmTlmgkVckO2UkIMvdBHy597-CIYq2w1pzJQiS0weYNa2W9UcZqO6C-sRd-AVJWbU7AynGX";
 const AUTH = "Bearer " + AUTH_TOKEN;
 const getTrackUrl = "https://api.spotify.com/v1/tracks/?ids=";
 const getPlaylistUrl = "https://api.spotify.com/v1/playlists/";

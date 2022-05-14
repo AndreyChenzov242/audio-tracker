@@ -1,5 +1,7 @@
+import React, { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import Layout from "./components/Layout";
+import { TrackListContext } from "./context";
 import MusicPage from "./pages/MusicPage";
 import NewsPage from "./pages/NewsPage";
 import SearchPage from "./pages/SearchPage";

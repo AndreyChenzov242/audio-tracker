@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   background-color: $grey-4;
+  flex-shrink: 0;
 
   &__icon {
     margin: 0 20px;
