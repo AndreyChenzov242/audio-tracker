@@ -1,10 +1,12 @@
 .main-content {
-  background-color: #f2f4f8;
   padding: 32px;
+  width: 100%;
+  min-height: calc(100% - 76px);
+  background-color: #f2f4f8;
+}
 
-  &__wrapper {
-    width: 100%;
-    height: calc(100vh - 60px);
-    overflow-y: scroll;
-  }
+.title {
+  margin-bottom: 24px;
+  font-size: 1.5rem;
+  padding: 0 8px;
 }

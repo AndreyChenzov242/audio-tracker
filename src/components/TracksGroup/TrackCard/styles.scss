@@ -1,18 +1,11 @@
-@import "../../styles/colors.scss";
+@import "../../../styles/colors.scss";
 
-.music-card {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 200px));
-  grid-template-rows: auto;
-  gap: 16px;
+.track-card {
+  border-radius: 4px;
+  padding: 8px;
 
-  &__item {
-    border-radius: 4px;
-    padding: 8px;
-
-    &:hover {
-      background: #d9d9d9cf;
-    }
+  &:hover {
+    background: #d9d9d9cf;
   }
 
   &__image-wrapper {
@@ -39,15 +32,18 @@
     &:hover {
       background-color: rgba(0, 0, 0, 0.5);
 
-      button {
+      .overlay {
         transform: translateY(0);
       }
     }
 
-    button {
+    .overlay {
       transition: transform 0.15s ease-out;
-
-      transform: translateY(100px);
+      transform: translateY(150px);
+      color: white;
+      font-size: 1.2rem;
+      padding: 0 34px;
+      text-align: center;
     }
   }
 
@@ -72,11 +68,5 @@
     color: $grey-1;
     max-height: 50px;
     overflow: hidden;
-  }
-}
-
-.songs {
-  &__title {
-    margin-bottom: 24px;
   }
 }

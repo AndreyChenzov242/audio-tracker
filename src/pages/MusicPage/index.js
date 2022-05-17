@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import SongsGroup from "../../components/SongsGroup";
+import TracksGroup from "../../components/TracksGroup";
 import { useSpotifyPlaylist } from "../../hooks/useSpotifyPlaylist";
 import { makeSimpleTracksData } from "../../utils/makeSimpleTracksData";
-import Player from "../../components/Player";
 import { TrackListContext } from "../../context";
+import { UA_TOP_TRACKS } from "../../constants/playLists";
 
 function MusicPage() {
-  // const { tracks, albums, artists } = useSpotifyData("astral%20step");
-  // const { tracks, albums, artists } = useSpotifyData("капли");
-  const { tracks, name } = useSpotifyPlaylist("37i9dQZEVXbNcoJZ65xktI");
+  const { tracks, name } = useSpotifyPlaylist(UA_TOP_TRACKS);
   const { setTrackList, setCurrentTrack } = useContext(TrackListContext);
   const [simpleTracksData, setSimpleTracksData] = useState();
 
@@ -20,16 +18,14 @@ function MusicPage() {
   }, [tracks]);
 
   return (
-    <main className="main-content__wrapper">
-      <div className="main-content">
-        {simpleTracksData && (
-          <SongsGroup
-            songs={simpleTracksData}
-            setCurrentTrack={setCurrentTrack}
-            title={name}
-          />
-        )}
-      </div>
+    <main className="main-content">
+      {simpleTracksData && (
+        <TracksGroup
+          tracks={simpleTracksData}
+          setCurrentTrack={setCurrentTrack}
+          title={name}
+        />
+      )}
     </main>
   );
 }

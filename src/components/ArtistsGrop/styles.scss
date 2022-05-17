@@ -1,0 +1,11 @@
+@import "../../styles/colors.scss";
+
+.artists {
+  margin-bottom: 24px;
+
+  &-container {
+    width: 100%;
+    display: grid;
+    gap: 16px;
+  }
+}

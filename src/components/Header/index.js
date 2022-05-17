@@ -1,13 +1,14 @@
 import React from "react";
-import { ImHeadphones, ImSearch } from "react-icons/im";
+import { ImHeadphones } from "react-icons/im";
 import { FaIndent } from "react-icons/fa";
 import ReactIcon from "../ReactIcon";
 import { useNavigate } from "react-router-dom";
 import classNames from "classnames";
+import SearchBar from "../SearchBar";
 import "./styles.scss";
 
 function Header(props) {
-  const { textMuted, toggleTextMuted } = props;
+  const { textMuted, toggleTextMuted, setSearch } = props;
 
   const logoClass = classNames({
     [`logo`]: true,
@@ -37,18 +38,7 @@ function Header(props) {
           <FaIndent />
         </ReactIcon>
       </button>
-      <div className="search-bar">
-        <div className="search-bar__icon">
-          <ReactIcon size="lg" color="grey">
-            <ImSearch />
-          </ReactIcon>
-        </div>
-        <input
-          type="text"
-          placeholder="search by songs, artists, albums, ets..."
-          onClick={routeChange}
-        />
-      </div>
+      <SearchBar onClick={routeChange} setSearch={setSearch} />
       <div className="header__auth">sign in</div>
     </div>
   );

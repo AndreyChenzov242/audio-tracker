@@ -1,34 +1,41 @@
 import { useEffect, useState, useContext, useRef } from "react";
-import { useAudio } from "../../hooks/useAudio";
 import { MdSkipNext, MdPlayArrow, MdPause } from "react-icons/md";
+import { TrackListContext } from "../../context";
+import { emptyImage } from "../../constants/images";
 import ReactIcon from "../ReactIcon";
 import "./styles.scss";
-import { TrackListContext } from "../../context";
 
 const Player = (props) => {
   const { trackList } = useContext(TrackListContext);
   const [playing, setPlaying] = useState(false);
   const [activeTrackIndex, setActiveTrackIndex] = useState(0);
-  const { isTextMuted, currentTrack } = props;
-  const textMuted = isTextMuted ? "text-muted" : "";
+  const { currentTrack } = props;
 
   const audioRef = useRef();
   const audioSrc = useRef();
 
+  const [currentTrackList, setCurrentTrackList] = useState();
+
   useEffect(() => {
-    if (currentTrack) {
+    if (currentTrack && trackList) {
       pause();
       setPlaying(true);
       audioSrc.current.src = currentTrack;
       audioRef.current.load();
       audioRef.current.play();
+      console.log(trackList);
       setActiveTrackIndex(
-        trackList.indexOf(
-          trackList.find((track) => track.preview_url == currentTrack)
-        )
+        trackList.findIndex((track) => track.preview_url == currentTrack)
       );
+      setCurrentTrackList(trackList);
     }
   }, [currentTrack]);
+
+  useEffect(() => {
+    if (!currentTrackList) {
+      setCurrentTrackList(trackList);
+    }
+  }, [trackList]);
 
   useEffect(() => {
     const stopPlaying = () => {
@@ -43,7 +50,8 @@ const Player = (props) => {
   }, []);
 
   const play = () => {
-    audioSrc.current.src = trackList[activeTrackIndex].preview_url;
+    if (!currentTrackList) return;
+    audioSrc.current.src = currentTrackList[activeTrackIndex].preview_url;
     audioRef.current.load();
     audioRef.current.play();
     setPlaying(true);
@@ -55,60 +63,64 @@ const Player = (props) => {
   };
 
   const playNext = () => {
-    pause();
+    if (!currentTrackList) return;
     setPlaying(true);
-    if (trackList.length == activeTrackIndex + 1) {
-      audioSrc.current.src = trackList[0].preview_url;
+    if (currentTrackList.length == activeTrackIndex + 1) {
+      audioSrc.current.src = currentTrackList[0].preview_url;
       audioRef.current.load();
       audioRef.current.play();
       setActiveTrackIndex(0);
       return;
     }
-    audioSrc.current.src = trackList[activeTrackIndex + 1].preview_url;
+    audioSrc.current.src = currentTrackList[activeTrackIndex + 1].preview_url;
     audioRef.current.load();
     audioRef.current.play();
     setActiveTrackIndex(activeTrackIndex + 1);
   };
 
   const playPrev = () => {
-    pause();
+    if (!currentTrackList) return;
     setPlaying(true);
     if (activeTrackIndex == 0) {
-      audioSrc.current.src = trackList[trackList.length - 1].preview_url;
+      audioSrc.current.src =
+        currentTrackList[currentTrackList.length - 1].preview_url;
       audioRef.current.load();
       audioRef.current.play();
-      setActiveTrackIndex(trackList.length - 1);
+      setActiveTrackIndex(currentTrackList.length - 1);
       return;
     }
-    audioSrc.current.src = trackList[activeTrackIndex - 1].preview_url;
+    audioSrc.current.src = currentTrackList[activeTrackIndex - 1].preview_url;
     audioRef.current.load();
     audioRef.current.play();
     setActiveTrackIndex(activeTrackIndex - 1);
   };
 
+  const artist =
+    currentTrackList?.[activeTrackIndex]?.artists
+      .map((artist) => {
+        return artist.name;
+      })
+      .join(", ") || "untitled";
   return (
-    <div className={`player ${textMuted}`}>
+    <div className={`player`}>
       <audio ref={audioRef}>
         <source ref={audioSrc} />
       </audio>
 
       <div className="player__image-wrapper">
         <img
-          src={trackList?.[activeTrackIndex].album.images[1].url}
+          src={
+            currentTrackList?.[activeTrackIndex]?.album.images[0].url ||
+            emptyImage
+          }
           alt="track image"
         />
       </div>
       <div className="player__title">
         <div className="player__track-name">
-          {trackList?.[activeTrackIndex].name || "untitled"}
+          {currentTrackList?.[activeTrackIndex]?.name || "untitled"}
         </div>
-        <div className="player__artist">
-          {trackList?.[activeTrackIndex]?.artists
-            .map((artist) => {
-              return artist.name;
-            })
-            .join(", ") || "untitled"}
-        </div>
+        <div className="player__artist">{artist}</div>
       </div>
       <div className="player__button-wrapper">
         <button
