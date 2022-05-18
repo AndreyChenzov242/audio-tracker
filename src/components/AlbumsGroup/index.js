@@ -4,27 +4,21 @@ import { useResize } from "../../hooks/useResize";
 import "./styles.scss";
 
 function AlbumsGroup(props) {
-  const { albums, title } = props;
-  const [columns, setColumns] = useState();
+  const { albums, title, columnCount } = props;
   const containerRef = useRef();
-  const { width } = useResize(containerRef);
   const [albumsStack, setAlbumsStack] = useState();
 
   useEffect(() => {
-    setColumns(Math.floor(width / 180));
-  }, [width]);
-
-  useEffect(() => {
-    if (columns) {
-      setAlbumsStack(albums.slice(0, columns));
+    if (columnCount) {
+      setAlbumsStack(albums.slice(0, columnCount));
       containerRef.current.style.gridTemplateColumns =
-        "repeat(" + columns + ", minmax(100px, 230px))";
+        "repeat(" + columnCount + ", minmax(100px, 230px))";
     }
-  }, [columns]);
+  }, [columnCount]);
 
   useEffect(() => {
     if (albumsStack) {
-      setAlbumsStack(albums.slice(0, columns));
+      setAlbumsStack(albums.slice(0, columnCount));
     }
   }, [albums]);
 

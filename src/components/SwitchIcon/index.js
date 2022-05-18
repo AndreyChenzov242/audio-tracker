@@ -1,5 +1,6 @@
 import { IoIosMusicalNotes, IoMdMusicalNote } from "react-icons/io";
 import { BsPlayBtnFill, BsNewspaper } from "react-icons/bs";
+import { HiFire } from "react-icons/hi";
 import { FaSearch } from "react-icons/fa";
 import ReactIcon from "../ReactIcon";
 
@@ -9,10 +10,8 @@ function switchIcon(name) {
       return <IoIosMusicalNotes />;
     case "search":
       return <FaSearch />;
-    case "news":
-      return <BsNewspaper />;
-    case "video":
-      return <BsPlayBtnFill />;
+    case "viral top":
+      return <HiFire />;
 
     default:
       return <IoMdMusicalNote />;

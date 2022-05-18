@@ -23,7 +23,6 @@ const Player = (props) => {
       audioSrc.current.src = currentTrack;
       audioRef.current.load();
       audioRef.current.play();
-      console.log(trackList);
       setActiveTrackIndex(
         trackList.findIndex((track) => track.preview_url == currentTrack)
       );
@@ -101,6 +100,7 @@ const Player = (props) => {
         return artist.name;
       })
       .join(", ") || "untitled";
+
   return (
     <div className={`player`}>
       <audio ref={audioRef}>

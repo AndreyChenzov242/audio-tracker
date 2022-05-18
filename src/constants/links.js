@@ -9,22 +9,18 @@ export const links = {
       url: "/search",
     },
     {
-      name: "news",
-      url: "/news",
-    },
-    {
-      name: "video",
-      url: "/video",
+      name: "viral top",
+      url: "/viral-top",
     },
   ],
   playList: [
     {
-      name: "hip-hop",
-      url: "/hip-hop",
+      name: "opera",
+      url: "/opera",
     },
     {
-      name: "jazz",
-      url: "/jazz",
+      name: "rock classics",
+      url: "/rock-classics",
     },
   ],
 };

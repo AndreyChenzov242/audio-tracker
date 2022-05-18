@@ -1,16 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import ReactIcon from "../../ReactIcon";
+import React from "react";
 import { emptyImage } from "../../../constants/images";
 import "./styles.scss";
 
 function AlbumCard(props) {
-  const { album, cardWidth, setCardWidth } = props;
+  const { album } = props;
 
-  // const ref = useRef(null);
-
-  // useEffect(() => {
-  //   console.log("width", ref.current.offsetWidth);
-  // }, [ref.current.offsetWidth]);
+  const year = album.release_date.slice(0, 4);
 
   return (
     <div className="album-card">
@@ -22,7 +17,9 @@ function AlbumCard(props) {
         />
       </div>
       <div className="album-card__name">{album.name}</div>
-      <div className="album-card__description">album</div>
+      <div className="album-card__description">
+        {year + " • " + album.total_tracks + " tracks"}
+      </div>
     </div>
   );
 }
