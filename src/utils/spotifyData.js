@@ -1,17 +1,24 @@
-const AUTH_TOKEN =
-  "BQDmckLV0lEYHaTsEV_Hv1EY8BIcy--VQze7JE5dhwu3dQnZ9nDVqqoIYyl7YkUtYu8pJv2q1hCxdCytAdWTNcp5_hBDomv2n_pnowQXxqL61hEPHtRa848SYwbOGF7GFQpfhYVDjOrDvVLnMIeERfRGD5jCQRFlH-_poAbG55YYt7lGEei5aajIXiEJyA";
-const AUTH = "Bearer " + AUTH_TOKEN;
 const getTrackUrl = "https://api.spotify.com/v1/tracks/?ids=";
 const getPlaylistUrl = "https://api.spotify.com/v1/playlists/";
 
 export const spotifyData = {
+  async auth() {
+    const url =
+      "https://jjm8fl3k76.execute-api.us-east-1.amazonaws.com/default/spotify-token";
+    let response = await fetch(url, { method: "GET" });
+
+    const json = await response.json();
+
+    localStorage.setItem("access_token", json.access_token);
+  },
+
   async search(query) {
     const url = `https://api.spotify.com/v1/search?q=${query}&type=track%2Cartist%2Calbum`;
 
     let response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: AUTH,
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
         "Content-Type": "application/json",
       },
     });
@@ -25,7 +32,7 @@ export const spotifyData = {
     let response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: AUTH,
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
         "Content-Type": "application/json",
       },
     });
@@ -39,7 +46,7 @@ export const spotifyData = {
     let response = await fetch(url, {
       method: "GET",
       headers: {
-        Authorization: AUTH,
+        Authorization: "Bearer " + localStorage.getItem("access_token"),
         "Content-Type": "application/json",
       },
     });
