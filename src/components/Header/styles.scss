@@ -1,4 +1,5 @@
 @import "../../styles/colors.scss";
+@import "../../styles/configs.scss";
 
 .header {
   display: flex;
@@ -6,8 +7,9 @@
   height: 60px;
   z-index: 1000;
 
-  &__auth {
-    margin-left: auto;
+  @media screen and (max-width: $breakpoint-up-md) {
+    background-color: $grey-4;
+    justify-content: space-between;
   }
 }
 
@@ -20,6 +22,19 @@
   background-color: $grey-4;
   flex-shrink: 0;
 
+  @media screen and (max-width: $breakpoint-up-md) {
+    max-width: 160px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $breakpoint-up-sm) {
+    max-width: 70px;
+  }
+
+  &:hover {
+    text-decoration: none;
+  }
+
   &__icon {
     margin: 0 20px;
   }
@@ -28,6 +43,10 @@
     font-size: 2rem;
     color: $primary;
     margin-bottom: -3px;
+
+    @media screen and (max-width: $breakpoint-up-sm) {
+      display: none;
+    }
   }
 
   &.text-muted {
@@ -43,7 +62,7 @@
   }
 }
 
-.sidebar-toggle {
+.toggle-text-muted {
   height: 100%;
   max-width: 50px;
   width: 100%;
@@ -54,5 +73,20 @@
     .react-icon {
       color: #303437;
     }
+  }
+
+  @media screen and (max-width: $breakpoint-up-md) {
+    display: none;
+  }
+}
+
+.sidebar-toggle {
+  height: 100%;
+  max-width: 50px;
+  width: 100%;
+  display: none;
+
+  @media screen and (max-width: $breakpoint-up-md) {
+    display: block;
   }
 }

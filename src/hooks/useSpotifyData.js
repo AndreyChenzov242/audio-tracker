@@ -5,7 +5,10 @@ export function useSpotifyData(query) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (!query) return;
+    if (!query) {
+      setData([]);
+      return;
+    }
     async function fetchData() {
       const responce = await spotifyData.search(query);
       setData(responce);

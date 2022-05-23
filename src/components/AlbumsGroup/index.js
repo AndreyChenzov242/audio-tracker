@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
 import AlbumCard from "./AlbumCard";
-import { useResize } from "../../hooks/useResize";
 import "./styles.scss";
 
 function AlbumsGroup(props) {
@@ -12,9 +11,9 @@ function AlbumsGroup(props) {
     if (columnCount) {
       setAlbumsStack(albums.slice(0, columnCount));
       containerRef.current.style.gridTemplateColumns =
-        "repeat(" + columnCount + ", minmax(100px, 230px))";
+        "repeat(" + columnCount + ", minmax(0, 1fr))";
     }
-  }, [columnCount]);
+  }, [columnCount, albums]);
 
   useEffect(() => {
     if (albumsStack) {

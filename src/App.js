@@ -3,13 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import MusicPage from "./pages/MusicPage";
 import SearchPage from "./pages/SearchPage";
-
 import { UA, VIRAL, ROCK, OPERA } from "./constants/playLists";
-import { spotifyData } from "./utils/spotifyData";
 
 function App() {
-  spotifyData.auth();
-
   return (
     <Routes>
       <Route path="/" element={<Layout />}>

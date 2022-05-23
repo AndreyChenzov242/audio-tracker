@@ -3,43 +3,63 @@ import { ImHeadphones } from "react-icons/im";
 import { FaIndent } from "react-icons/fa";
 import ReactIcon from "../ReactIcon";
 import { useNavigate } from "react-router-dom";
-import classNames from "classnames";
 import SearchBar from "../SearchBar";
 import "./styles.scss";
 
 function Header(props) {
-  const { textMuted, toggleTextMuted, setSearch } = props;
+  const {
+    isTextMuted,
+    toggleIsTextMuted,
+    setSearch,
+    toggleIsActiveNavbar,
+    turnOffNavbar,
+  } = props;
 
-  const logoClass = classNames({
-    [`logo`]: true,
-    [`text-muted`]: textMuted,
-  });
+  const textMuted = isTextMuted ? "text-muted" : "";
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const routeChange = () => {
     navigate(`search`);
   };
 
+  const handleSearchClick = () => {
+    routeChange();
+    turnOffNavbar();
+  };
+
   return (
     <div className="header">
-      <a href="/" className={logoClass}>
+      <a href="/" className={"logo " + textMuted}>
         <ReactIcon className="logo__icon" size="xxl">
           <ImHeadphones />
         </ReactIcon>
         <div className="logo__title">Music</div>
       </a>
       <button
-        className="sidebar-toggle"
+        className="toggle-text-muted"
         onClick={() => {
-          toggleTextMuted();
+          toggleIsTextMuted();
         }}
       >
         <ReactIcon size="lg" color="grey">
           <FaIndent />
         </ReactIcon>
       </button>
-      <SearchBar onClick={routeChange} setSearch={setSearch} />
-      <div className="header__auth">sign in</div>
+      <SearchBar
+        onClick={handleSearchClick}
+        setSearch={setSearch}
+        turnOffNavbar={turnOffNavbar}
+      />
+      <button
+        className="sidebar-toggle"
+        onClick={() => {
+          toggleIsActiveNavbar();
+        }}
+      >
+        <ReactIcon size="xl">
+          <FaIndent />
+        </ReactIcon>
+      </button>
     </div>
   );
 }

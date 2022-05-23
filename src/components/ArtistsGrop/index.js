@@ -11,7 +11,7 @@ function ArtistsGroup(props) {
     if (columnCount) {
       setArtistsStack(artists.slice(0, columnCount));
       containerRef.current.style.gridTemplateColumns =
-        "repeat(" + columnCount + ", minmax(100px, 230px))";
+        "repeat(" + columnCount + ", minmax(0, 1fr))";
     }
   }, [columnCount]);
 

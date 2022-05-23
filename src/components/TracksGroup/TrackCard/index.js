@@ -6,6 +6,12 @@ import "./styles.scss";
 function TrackCard(props) {
   const { track, setCurrentTrack } = props;
 
+  const trackArtists = track.artists
+    .map((artist) => {
+      return artist.name;
+    })
+    .join(", ");
+
   return (
     <div className="track-card">
       <div className="track-card__image-wrapper">
@@ -32,14 +38,20 @@ function TrackCard(props) {
           alt="track image"
         />
       </div>
-      <div className="track-card__name">{track.name || track.track.name}</div>
-      <div className="track-card__description">
-        {track.artists
-          .map((artist) => {
-            return artist.name;
-          })
-          .join(", ")}
+      <div className="track-card__text">
+        <div className="track-card__name">{track.name || track.track.name}</div>
+        <div className="track-card__description">{trackArtists}</div>
       </div>
+      {track.preview_url && (
+        <button
+          className="play-button"
+          onClick={() => setCurrentTrack(track.preview_url)}
+        >
+          <ReactIcon size="xxxl" color={"grey"}>
+            <MdPlayArrow />
+          </ReactIcon>
+        </button>
+      )}
     </div>
   );
 }

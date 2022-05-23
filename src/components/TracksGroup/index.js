@@ -4,15 +4,26 @@ import "./styles.scss";
 import TrackCard from "./TrackCard";
 
 function TracksGroup(props) {
-  const { tracks, title, setCurrentTrack, columnCount } = props;
+  const { tracks, title, setCurrentTrack, columnCount, width } = props;
   const containerRef = useRef();
 
   useEffect(() => {
+    if (width < 768) {
+      containerRef.current.style.gridTemplateColumns =
+        "repeat(" + 1 + ", minmax(0, 1fr))";
+      return;
+    }
+    if (width < 992) {
+      containerRef.current.style.gridTemplateColumns =
+        "repeat(" + 2 + ", minmax(0, 1fr))";
+      return;
+    }
+
     if (columnCount) {
       containerRef.current.style.gridTemplateColumns =
-        "repeat(" + columnCount + ", minmax(100px, 230px))";
+        "repeat(" + columnCount + ", minmax(0, 1fr))";
     }
-  }, [columnCount]);
+  }, [columnCount, width]);
 
   return (
     <div className="tracks">
