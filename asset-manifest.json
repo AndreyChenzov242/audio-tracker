@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/audio-tracker/static/css/main.e8156156.css",
+    "main.js": "/audio-tracker/static/js/main.5e7afca8.js",
+    "index.html": "/audio-tracker/index.html",
+    "main.e8156156.css.map": "/audio-tracker/static/css/main.e8156156.css.map",
+    "main.5e7afca8.js.map": "/audio-tracker/static/js/main.5e7afca8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e8156156.css",
+    "static/js/main.5e7afca8.js"
+  ]
+}
