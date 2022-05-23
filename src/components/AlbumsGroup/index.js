@@ -19,7 +19,7 @@ function AlbumsGroup(props) {
     if (albumsStack) {
       setAlbumsStack(albums.slice(0, columnCount));
     }
-  }, [albums]);
+  }, [albums, columnCount, albumsStack]);
 
   return (
     <div className="albums">
