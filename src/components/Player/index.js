@@ -5,16 +5,15 @@ import { emptyImage } from "../../constants/images";
 import ReactIcon from "../ReactIcon";
 import "./styles.scss";
 
-const Player = (props) => {
+function Player(props) {
+  const { currentTrack } = props;
   const { trackList } = useContext(TrackListContext);
   const [playing, setPlaying] = useState(false);
   const [activeTrackIndex, setActiveTrackIndex] = useState(0);
-  const { currentTrack } = props;
+  const [currentTrackList, setCurrentTrackList] = useState();
 
   const audioRef = useRef();
   const audioSrc = useRef();
-
-  const [currentTrackList, setCurrentTrackList] = useState();
 
   useEffect(() => {
     if (currentTrack && trackList) {
@@ -64,7 +63,7 @@ const Player = (props) => {
   const playNext = () => {
     if (!currentTrackList) return;
     setPlaying(true);
-    if (currentTrackList.length == activeTrackIndex + 1) {
+    if (currentTrackList.length === activeTrackIndex + 1) {
       audioSrc.current.src = currentTrackList[0].preview_url;
       audioRef.current.load();
       audioRef.current.play();
@@ -80,7 +79,7 @@ const Player = (props) => {
   const playPrev = () => {
     if (!currentTrackList) return;
     setPlaying(true);
-    if (activeTrackIndex == 0) {
+    if (activeTrackIndex === 0) {
       audioSrc.current.src =
         currentTrackList[currentTrackList.length - 1].preview_url;
       audioRef.current.load();
@@ -113,7 +112,7 @@ const Player = (props) => {
             currentTrackList?.[activeTrackIndex]?.album.images[0].url ||
             emptyImage
           }
-          alt="track image"
+          alt="track"
         />
       </div>
       <div className="player__title">
@@ -153,6 +152,6 @@ const Player = (props) => {
       </div>
     </div>
   );
-};
+}
 
 export default Player;
