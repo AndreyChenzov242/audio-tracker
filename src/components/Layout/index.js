@@ -18,17 +18,21 @@ function Layout() {
   const contentRef = useRef();
   const wrapperRef = useRef();
   const { width: contentWidth } = useResize(contentRef);
-  const { width: wrapperWidth } = useResize(wrapperRef);
+  const { width: windowWidth } = useResize(wrapperRef);
 
   useEffect(() => {
     setColumnCount(Math.floor((contentWidth - 64) / 170));
   }, [contentWidth]);
 
   useEffect(() => {
-    if (wrapperWidth < 992) {
+    if (windowWidth < 992) {
       setIsTextMuted(false);
     }
-  }, [wrapperWidth]);
+  }, [windowWidth]);
+
+  useEffect(() => {
+    window.dispatchEvent(new Event("resize"));
+  }, [isTextMuted]);
 
   function toggleIsTextMuted() {
     setIsTextMuted(!isTextMuted);
@@ -41,10 +45,6 @@ function Layout() {
   function turnOffNavbar() {
     setIsActiveNavbar(false);
   }
-
-  useEffect(() => {
-    window.dispatchEvent(new Event("resize"));
-  }, [isTextMuted]);
 
   return (
     <>
@@ -69,7 +69,7 @@ function Layout() {
             setCurrentTrack,
             search,
             columnCount,
-            wrapperWidth,
+            windowWidth,
           }}
         >
           <div className="content" ref={contentRef}>

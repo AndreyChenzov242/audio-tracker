@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
-import TracksGroup from "../../components/TracksGroup";
 import { useSpotifyPlaylist } from "../../hooks/useSpotifyPlaylist";
 import { makeSimpleTracksData } from "../../utils/makeSimpleTracksData";
 import { TrackListContext } from "../../context";
+import TracksGroup from "../../components/TracksGroup";
 import Loader from "../../components/Loader";
 
 function MusicPage(props) {
   const { playList } = props;
   const { tracks, name } = useSpotifyPlaylist(playList);
-  const { setTrackList, setCurrentTrack, columnCount, wrapperWidth } =
+  const { setTrackList, setCurrentTrack, columnCount, windowWidth } =
     useContext(TrackListContext);
   const [simpleTracksData, setSimpleTracksData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -24,7 +24,7 @@ function MusicPage(props) {
     if (simpleTracksData) {
       setTrackList(simpleTracksData);
     }
-  }, [simpleTracksData]);
+  }, [simpleTracksData, setTrackList]);
 
   if (!isLoaded) {
     return (
@@ -42,7 +42,7 @@ function MusicPage(props) {
           setCurrentTrack={setCurrentTrack}
           title={name}
           columnCount={columnCount}
-          width={wrapperWidth}
+          width={windowWidth}
         />
       )}
     </main>

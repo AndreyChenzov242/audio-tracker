@@ -7,7 +7,7 @@ import AlbumsGroup from "../../components/AlbumsGroup";
 import Loader from "../../components/Loader";
 
 function SearchPage() {
-  const { setTrackList, setCurrentTrack, search, columnCount, wrapperWidth } =
+  const { setTrackList, setCurrentTrack, search, columnCount, windowWidth } =
     useContext(TrackListContext);
   const { tracks, albums, artists } = useSpotifyData(search);
   const [isLoadind, setIsLoading] = useState(false);
@@ -25,7 +25,7 @@ function SearchPage() {
     if (tracks) {
       setTrackList(tracks.items);
     }
-  }, [tracks]);
+  }, [tracks, setTrackList]);
 
   if (isLoadind) {
     return (
@@ -61,7 +61,7 @@ function SearchPage() {
           setCurrentTrack={setCurrentTrack}
           title={"Tracks"}
           columnCount={columnCount}
-          width={wrapperWidth}
+          width={windowWidth}
         />
       )}
 

@@ -5,15 +5,17 @@ import "./style.scss";
 
 function SearchBar(props) {
   const { onClick, setSearch } = props;
-
   const [searchInput, setSearchInput] = useState();
 
   useEffect(() => {
     setSearch(searchInput);
-  }, [searchInput]);
+  }, [searchInput, setSearch]);
+
+  let timer;
 
   const handleChange = (event) => {
-    setTimeout(() => {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
       setSearchInput(event.target.value);
     }, 1000);
   };

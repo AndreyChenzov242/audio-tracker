@@ -13,7 +13,7 @@ function AlbumCard(props) {
         <img
           className="album-card__image"
           src={album.images[1]?.url || emptyImage}
-          alt="album image"
+          alt="album"
         />
       </div>
       <div className="album-card__name">{album.name}</div>

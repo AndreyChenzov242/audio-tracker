@@ -13,13 +13,13 @@ function ArtistsGroup(props) {
       containerRef.current.style.gridTemplateColumns =
         "repeat(" + columnCount + ", minmax(0, 1fr))";
     }
-  }, [columnCount]);
+  }, [columnCount, artists]);
 
   useEffect(() => {
     if (artistsStack) {
       setArtistsStack(artists.slice(0, columnCount));
     }
-  }, [artists]);
+  }, [artists, artistsStack, columnCount]);
 
   return (
     <div className="artists">

@@ -13,9 +13,6 @@ export const spotifyData = {
   },
 
   async checkToken() {
-    // console.log("check", localStorage.getItem("accessToken"));
-    // console.log("check");
-
     if (localStorage.getItem("accessToken")) {
       if (localStorage.getItem("expiresIn") >= new Date().getTime()) {
         return;

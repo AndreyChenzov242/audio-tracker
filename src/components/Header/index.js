@@ -2,7 +2,7 @@ import React from "react";
 import { ImHeadphones } from "react-icons/im";
 import { FaIndent } from "react-icons/fa";
 import ReactIcon from "../ReactIcon";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import "./styles.scss";
 
@@ -18,6 +18,7 @@ function Header(props) {
   const textMuted = isTextMuted ? "text-muted" : "";
 
   const navigate = useNavigate();
+
   const routeChange = () => {
     navigate(`search`);
   };
@@ -29,12 +30,12 @@ function Header(props) {
 
   return (
     <div className="header">
-      <a href="/" className={"logo " + textMuted}>
+      <Link to="/" className={"logo " + textMuted}>
         <ReactIcon className="logo__icon" size="xxl">
           <ImHeadphones />
         </ReactIcon>
         <div className="logo__title">Music</div>
-      </a>
+      </Link>
       <button
         className="toggle-text-muted"
         onClick={() => {

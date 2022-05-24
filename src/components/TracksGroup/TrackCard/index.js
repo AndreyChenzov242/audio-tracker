@@ -35,7 +35,7 @@ function TrackCard(props) {
         <img
           className="track-card__image"
           src={track.album?.images[1].url || track.track.album.images[1].url}
-          alt="track image"
+          alt="track"
         />
       </div>
       <div className="track-card__text">

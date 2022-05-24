@@ -2,13 +2,15 @@
 @import "../../styles/configs.scss";
 
 .navbar {
-  min-height: calc(100vh - 60px);
+  height: calc(100vh - 60px);
   background-color: $secondary;
   max-width: 250px;
   width: 100%;
   z-index: 100;
 
   @media screen and (max-width: $breakpoint-up-md) {
+    height: calc(100vh - 136px);
+    overflow-y: auto;
     position: absolute;
     top: 0;
     left: 0;

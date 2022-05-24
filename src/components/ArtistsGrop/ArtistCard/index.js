@@ -11,7 +11,7 @@ function ArtistCard(props) {
         <img
           className="artist-card__image"
           src={artist.images[1]?.url || emptyImage}
-          alt="artist image"
+          alt="artist"
         />
       </div>
       <div className="artist-card__name">{artist.name}</div>
