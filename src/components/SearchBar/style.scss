@@ -19,6 +19,15 @@
     height: 40px;
     border: none;
     padding: 0 8px;
+
+    &:focus {
+      outline: none;
+      background: rgb(245, 245, 245);
+
+      @media screen and (max-width: $breakpoint-up-md) {
+        background: transparent;
+      }
+    }
   }
 
   &__label {

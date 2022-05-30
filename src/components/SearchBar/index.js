@@ -33,6 +33,7 @@ function SearchBar(props) {
         onClick={onClick}
         onFocus={onClick}
         onChange={handleChange}
+        tabIndex="0"
       />
     </div>
   );
