@@ -31,6 +31,7 @@ function SearchBar(props) {
         type="text"
         placeholder="search by songs, artists, albums, ets..."
         onClick={onClick}
+        onFocus={onClick}
         onChange={handleChange}
       />
     </div>
