@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/audio-tracker/static/css/main.b4ce76cb.css",
-    "main.js": "/audio-tracker/static/js/main.4951a834.js",
+    "main.css": "/audio-tracker/static/css/main.f9301b47.css",
+    "main.js": "/audio-tracker/static/js/main.f59ba54e.js",
     "index.html": "/audio-tracker/index.html",
-    "main.b4ce76cb.css.map": "/audio-tracker/static/css/main.b4ce76cb.css.map",
-    "main.4951a834.js.map": "/audio-tracker/static/js/main.4951a834.js.map"
+    "main.f9301b47.css.map": "/audio-tracker/static/css/main.f9301b47.css.map",
+    "main.f59ba54e.js.map": "/audio-tracker/static/js/main.f59ba54e.js.map"
   },
   "entrypoints": [
-    "static/css/main.b4ce76cb.css",
-    "static/js/main.4951a834.js"
+    "static/css/main.f9301b47.css",
+    "static/js/main.f59ba54e.js"
   ]
 }
